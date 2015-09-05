@@ -26,11 +26,9 @@ You can instance the directive in your code at its most simple incarnation as fo
 
 ```html
 <p>Ipsa provident iusto odit, est natus voluptatum voluptatem aliquam velit sapiente
-facere architecto maxime ab, quisquam totam tempora, fugiat eveniet odio ex! Quam,
-a, aut? Qui voluptatum voluptatibus, blanditiis expedita?</p>
+facere architecto maxime ab, quisquam totam tempora</p>
 <p>Optio magnam numquam officiis ex. Cupiditate fuga ipsa, quasi hic voluptate
-provident suscipit officia iure qui natus voluptatibus tempore! Incidunt
-mollitia animi doloribus, porro aut dignissimos sunt in delectus, soluta!</p>
+provident suscipit officia iure qui natus voluptatibus tempore! </p>
 
 ...
 <when-scrolled-to-this scrolling-complete-handler="doSomething(event)" />
@@ -54,6 +52,24 @@ Other optional attributes available are:
 * **initialize-on-click**: Sometimes you don't want the component to start emitting events or executing methods until the user clicks on its contents for whatever reason, regardless what contents we render inside (p.eg. forcing the user to click on a "load more" button at least once to trigger any behavior).
 * **is-enabled**: We can enable or disable programmatically the directive from its parent scope by setting this parameter to `true` (default) or `false`.
 * **on-trigger-class**: We can assign a class name to the directive wrapper tag which will only be applied when the component is scrolled within the viewport, and then removed when the component is scrolled outside the viewport. This might be leveraged for swapping contents, changing layouts, etc.
+
+An explanatory example of the above could get as follows:
+
+```html
+<p>Optio magnam numquam officiis ex. Cupiditate fuga ipsa, quasi hic voluptate
+provident suscipit officia iure qui natus voluptatibus tempore! </p>
+
+...
+<when-scrolled-to-this scrolling-complete-handler="doSomething(event)"
+    scrolling-complete-event="scrolling:componentReached"
+    initialize-on-click="true"
+    is-enabled="true"
+    on-trigger-class="is-scrolled is-inside" />
+        <input type="button">Click me to trigger infinite scrolling</button>
+</when-scrolled-to-this>
+```
+
+Both the method associated to the `scrolling-complete-handler` attribute or the event defined at the `scrolling-complete-event` receive an `event` object with scrolling data in its payload.
 
 ### A note about the (missing) unit and E2E tests
 
